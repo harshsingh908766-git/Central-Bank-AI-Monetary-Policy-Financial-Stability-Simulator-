@@ -1,0 +1,30 @@
+
+project:
+  name: "Central Bank AI"
+  version: "0.1.0"
+  environment: "development"
+
+forecasting:
+  default_horizon: 4
+  target_variable: "inflation"
+  frequency: "quarterly"
+
+validation:
+  minimum_observations: 12
+  random_seed: 42
+  temporal_validation: true
+
+governance:
+  human_approval_required: true
+  autonomous_policy_decisions: false
+  audit_logging: true
+
+engines:
+  econometric: true
+  machine_learning: false
+  deep_learning: false
+  graph_ai: false
+  nlp: false
+  causal: false
+  scenario: false
+  regime: false
