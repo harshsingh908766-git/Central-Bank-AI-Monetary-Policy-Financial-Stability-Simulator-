@@ -1,0 +1,38 @@
+
+services:
+
+  api:
+    build: .
+    container_name: central-bank-ai-api
+
+    ports:
+      - "8000:8000"
+
+    environment:
+      APP_ENV: development
+
+    volumes:
+      - ./src:/app/src
+      - ./configs:/app/configs
+
+    restart: unless-stopped
+
+  dashboard:
+    build: .
+    container_name: central-bank-ai-dashboard
+
+    command:
+      - streamlit
+      - run
+      - dashboard/app.py
+      - --server.address=0.0.0.0
+      - --server.port=8501
+
+    ports:
+      - "8501:8501"
+
+    environment:
+      API_URL: http://api:8000
+
+    depends_on:
+      - api
